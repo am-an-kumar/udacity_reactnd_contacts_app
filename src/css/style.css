@@ -1,4 +1,4 @@
-/* html {
+html {
   box-sizing: border-box;
 }
 *,
@@ -24,7 +24,7 @@ body,
 
 /* CreateContact */
 
-/* .close-create-contact {
+.close-create-contact {
   display: block;
   width: 60px;
   height: 60px;
@@ -80,7 +80,7 @@ body,
 
 /* ListContacts */
 
-/* .list-contacts {
+.list-contacts {
   padding-top: 60px;
 }
 .list-contacts-top {
@@ -189,4 +189,4 @@ body,
   vertical-align: middle;
   cursor: pointer;
   outline: none;
-} */
+}
