@@ -12,6 +12,7 @@ class ContactsList extends Component {
     })
   }
 
+  // clears the search field and thus shows all contacts
   clearSearchQuery = () => {
     this.updateSearchQuery('')
   }
@@ -21,6 +22,7 @@ class ContactsList extends Component {
     const { updateSearchQuery, clearSearchQuery } = this
     const { contacts, removeHandler } = this.props
 
+    // filtering contacts based on search query
     const filteredContacts =
       query === ''
         ? contacts

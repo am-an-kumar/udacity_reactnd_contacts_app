@@ -9,6 +9,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // fetching all contacts from server, the filtering is done on client side
     ContactsAPI.getAll().then(contacts => {
       this.setState({
         contacts,
@@ -17,11 +18,15 @@ class App extends Component {
   }
 
   removeContact = contactToRemove => {
+    // removing contact from UI state
     this.setState(currentState => ({
       contacts: currentState.contacts.filter(
         contact => contact.id !== contactToRemove.id,
       ),
     }))
+
+    // making DELETE request to remove contact from server
+    ContactsAPI.remove(contactToRemove)
   }
 
   render() {
