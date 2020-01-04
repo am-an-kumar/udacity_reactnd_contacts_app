@@ -6,14 +6,19 @@ class ContactsList extends Component {
     query: '',
   }
 
-  updateSearchQuery = ({ value }) => {
+  updateSearchQuery = value => {
     this.setState({
       query: value,
     })
   }
 
+  clearSearchQuery = () => {
+    this.updateSearchQuery('')
+  }
+
   render() {
     const { query } = this.state
+    const { updateSearchQuery, clearSearchQuery } = this
     const { contacts, removeHandler } = this.props
 
     const filteredContacts =
@@ -33,14 +38,14 @@ class ContactsList extends Component {
             type='text'
             placeholder='Search Contacts'
             value={query}
-            onChange={event => this.updateSearchQuery(event.target)}
+            onChange={event => updateSearchQuery(event.target.value)}
           />
         </div>
 
         {filteredContacts.length !== contacts.length && (
           <div className='showing-contacts'>
             <span>{`Now showing ${filteredContacts.length} out of ${contacts.length} contacts`}</span>
-            <button>Show all</button>
+            <button onClick={clearSearchQuery}>Show all</button>
           </div>
         )}
 
