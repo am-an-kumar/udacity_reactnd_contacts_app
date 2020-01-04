@@ -6,7 +6,6 @@ class ContactsList extends Component {
     query: '',
   }
 
-  // change handler for controlled input used to search for a user by name of twitter handle
   updateSearchQuery = ({ value }) => {
     this.setState({
       query: value,
@@ -37,6 +36,13 @@ class ContactsList extends Component {
             onChange={event => this.updateSearchQuery(event.target)}
           />
         </div>
+
+        {filteredContacts.length !== contacts.length && (
+          <div className='showing-contacts'>
+            <span>{`Now showing ${filteredContacts.length} out of ${contacts.length} contacts`}</span>
+            <button>Show all</button>
+          </div>
+        )}
 
         <ol className='contact-list'>
           {filteredContacts.map(contact => (
