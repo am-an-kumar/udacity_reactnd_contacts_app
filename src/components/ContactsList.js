@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class ContactsList extends Component {
@@ -42,6 +43,9 @@ class ContactsList extends Component {
             value={query}
             onChange={event => updateSearchQuery(event.target.value)}
           />
+          <Link to='/create' className='add-contact'>
+            Add Contact
+          </Link>
         </div>
 
         {filteredContacts.length !== contacts.length && (
@@ -62,7 +66,7 @@ class ContactsList extends Component {
               ></div>
               <div className='contact-details'>
                 <p>{contact.name}</p>
-                <p>{`@ ${contact.handle}`}</p>
+                <p>{`${contact.handle}`}</p>
               </div>
               <button
                 className='contact-remove'
@@ -86,7 +90,7 @@ ContactsList.propTypes = {
       handle: PropTypes.string.isRequired,
       avatarURL: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
   removeHandler: PropTypes.func.isRequired,
 }
 

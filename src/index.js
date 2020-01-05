@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import App from './components/App'
 import '@babel/polyfill'
 import './css/style.css'
@@ -11,4 +12,9 @@ if (process.env.NODE_ENV === 'development') {
   axe(React, ReactDOM, 1000)
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root'),
+)

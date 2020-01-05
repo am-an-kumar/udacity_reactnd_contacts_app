@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
+import { Route, Redirect } from 'react-router-dom'
 import ContactsList from './ContactsList'
+import AddContactForm from './AddContactForm'
 import * as ContactsAPI from '../utils/ContactsAPI'
 
 class App extends Component {
@@ -31,10 +33,22 @@ class App extends Component {
 
   render() {
     return (
-      <ContactsList
-        contacts={this.state.contacts}
-        removeHandler={this.removeContact}
-      />
+      <>
+        <Route
+          exact
+          path='/'
+          render={() => {
+            return (
+              <ContactsList
+                contacts={this.state.contacts}
+                removeHandler={this.removeContact}
+              />
+            )
+          }}
+        />
+        <Route path='/create' component={AddContactForm} />
+        <Redirect to='/' />
+      </>
     )
   }
 }
