@@ -34,6 +34,12 @@ class AddContactForm extends Component {
     else {
       // serializing form data to send using POST
       const formData = serializeForm(event.target, { hash: true })
+
+      // appending '@' if user forgot to add it
+      if (formData.handle[0] !== '@') {
+        formData.handle = '@' + formData.handle
+      }
+      console.dir(formData)
       if (this.props.onAddContact) {
         this.props.onAddContact(formData)
       }
