@@ -13,14 +13,17 @@ const validateName = name => {
     : ''
 }
 
-const validateHandle = handle => {
+// checks for duplicate handle too
+const validateHandle = (handle, contacts) => {
   handle = handle.trim()
 
   return handle === ''
     ? "handle can't be empty"
     : handle.length < MIN_HANDLE_LENGTH
     ? 'handle must be 6 or more characters'
-    : ''
+    : contacts.find(contact => contact.handle == handle)
+    ? ''
+    : 'Duplicate twitter handle'
 }
 
 export { validateName, validateHandle }

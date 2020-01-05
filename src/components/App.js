@@ -75,6 +75,7 @@ class App extends Component {
                   autoClose: 3000,
                 })
               }}
+              contacts={this.state.contacts}
             />
           )}
         />

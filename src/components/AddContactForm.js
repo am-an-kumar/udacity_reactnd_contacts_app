@@ -19,7 +19,7 @@ class AddContactForm extends Component {
     // checking name and handle for error
     const { name, handle } = this.state
     const nameErrorMessage = validateName(name)
-    const handleErrorMessage = validateHandle(handle)
+    const handleErrorMessage = validateHandle(handle, this.props.contacts)
 
     if (nameErrorMessage || handleErrorMessage) {
       // setting the error message and triming name and handle
@@ -91,6 +91,14 @@ class AddContactForm extends Component {
 
 AddContactForm.propTypes = {
   onAddContact: PropTypes.func,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      handle: PropTypes.string.isRequired,
+      avatarURL: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 }
 
 export default AddContactForm
