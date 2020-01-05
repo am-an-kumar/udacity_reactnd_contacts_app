@@ -3,35 +3,37 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import ImageInput from './ImageInput'
 import serializeForm from 'form-serialize'
+import { validateName, validateHandle } from '../utils/formValidate'
 
 class AddContactForm extends Component {
   state = {
     name: '',
     handle: '',
-    nameError: false,
-    handleError: false,
+    nameErrorMessage: '',
+    handleErrorMessage: '',
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const formData = serializeForm(event.target, { hash: true })
 
-    let { name, handle } = this.state
-    name = name.trim()
-    handle = handle.trim()
+    // checking name and handle for error
+    const { name, handle } = this.state
+    const nameErrorMessage = validateName(name)
+    const handleErrorMessage = validateHandle(handle)
 
-    // check to see if name and handle are valid or not
-    const nameError = name === '' ? true : false
-    const handleError = handle === '' ? true : false
-
-    if (nameError || handleError) {
+    if (nameErrorMessage || handleErrorMessage) {
+      // setting the error message and triming name and handle
       this.setState({
-        name,
-        handle,
-        nameError,
-        handleError,
+        name: name.trim(),
+        handle: handle.trim(),
+        nameErrorMessage,
+        handleErrorMessage,
       })
-    } else {
+    }
+    // form can be sent to server
+    else {
+      // serializing form data to send using POST
+      const formData = serializeForm(event.target, { hash: true })
       if (this.props.onAddContact) {
         this.props.onAddContact(formData)
       }
@@ -44,12 +46,12 @@ class AddContactForm extends Component {
     const { name, value } = event.target
     this.setState({
       [name]: value,
-      [name + 'Error']: false,
+      [name + 'ErrorMessage']: '',
     })
   }
 
   render() {
-    const { name, handle, nameError, handleError } = this.state
+    const { name, handle, nameErrorMessage, handleErrorMessage } = this.state
 
     return (
       <div>
@@ -70,7 +72,7 @@ class AddContactForm extends Component {
               value={name}
               onChange={this.onChangeHandler}
             />
-            {nameError && <span>Invalid Name</span>}
+            {nameErrorMessage && <span>{nameErrorMessage}</span>}
             <input
               type='text'
               name='handle'
@@ -78,7 +80,7 @@ class AddContactForm extends Component {
               value={handle}
               onChange={this.onChangeHandler}
             />
-            {handleError && <span>Invalid Twitter Handle</span>}
+            {handleErrorMessage && <span>{handleErrorMessage}</span>}
             <button>Add Contact</button>
           </div>
         </form>

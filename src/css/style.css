@@ -80,12 +80,17 @@ body,
 
 .create-contact-details button {
   margin-top: 20px;
-  background: #ccc;
+  background-color: rgb(204, 204, 204, 0.6);
   padding: 10px;
   text-transform: uppercase;
   font-size: inherit;
   border: none;
   outline: 0;
+}
+
+.create-contact-details button:hover {
+  background-color: rgb(204, 204, 204, 1);
+  cursor: pointer;
 }
 
 /* ListContacts */
