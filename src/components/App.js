@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import { Route, Redirect, Switch } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import ContactsList from './ContactsList'
 import AddContactForm from './AddContactForm'
 import * as ContactsAPI from '../utils/ContactsAPI'
@@ -20,8 +21,6 @@ class App extends Component {
   }
 
   addContact = formData => {
-    console.log('I am doing this logging')
-    console.dir(formData)
     ContactsAPI.create(formData).then(contact => {
       this.setState(currentState => ({
         contacts: currentState.contacts.concat([contact]),
@@ -64,6 +63,12 @@ class App extends Component {
                 this.addContact(contact)
                 // redirects to contact list page after a new contact is added
                 history.push('/')
+                // notifying user
+                toast.success('Contact Added', {
+                  position: toast.POSITION.BOTTOM_RIGHT,
+                  delay: 400,
+                  autoClose: 3000,
+                })
               }}
             />
           )}
