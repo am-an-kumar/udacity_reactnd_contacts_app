@@ -36,7 +36,7 @@ class App extends Component {
       <>
         <Route
           exact
-          path='/'
+          path='/create'
           render={() => {
             return (
               <ContactsList
@@ -46,7 +46,7 @@ class App extends Component {
             )
           }}
         />
-        <Route path='/create' component={AddContactForm} />
+        <Route path='/' component={AddContactForm} />
         <Redirect to='/' />
       </>
     )
