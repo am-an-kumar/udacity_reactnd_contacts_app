@@ -7,6 +7,7 @@ if (!token)
     .toString(36)
     .substr(-8)
 
+// adding authorization header to every request as server will throw 403 without it.
 const headers = {
   Accept: 'application/json',
   Authorization: token,

@@ -36,6 +36,7 @@ class App extends Component {
       ),
     }))
 
+    // notifying user
     toast.success('Contact Removed', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 2000,

@@ -39,7 +39,6 @@ class AddContactForm extends Component {
       if (formData.handle[0] !== '@') {
         formData.handle = '@' + formData.handle
       }
-      console.dir(formData)
       if (this.props.onAddContact) {
         this.props.onAddContact(formData)
       }
