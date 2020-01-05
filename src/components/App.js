@@ -19,6 +19,14 @@ class App extends Component {
     })
   }
 
+  addContact = formData => {
+    ContactsAPI.create(formData).then(contact => {
+      this.setState(currentState => ({
+        contacts: currentState.contacts.concat([contact]),
+      }))
+    })
+  }
+
   removeContact = contactToRemove => {
     // removing contact from UI state
     this.setState(currentState => ({
@@ -36,7 +44,7 @@ class App extends Component {
       <>
         <Route
           exact
-          path='/create'
+          path='/'
           render={() => {
             return (
               <ContactsList
@@ -46,7 +54,17 @@ class App extends Component {
             )
           }}
         />
-        <Route path='/' component={AddContactForm} />
+        <Route
+          path='/create'
+          render={({ history }) => (
+            <AddContactForm
+              onAddContact={contact => {
+                this.addContact(contact)
+                history.push('/')
+              }}
+            />
+          )}
+        />
         <Redirect to='/' />
       </>
     )
