@@ -38,7 +38,7 @@ class App extends Component {
 
     toast.success('Contact Removed', {
       position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: false,
+      autoClose: 2000,
     })
 
     // making DELETE request to remove contact from server
