@@ -2,7 +2,9 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions) - [Setting Up](#setting-up) - [Features](#features)
+- [Instructions](#instructions)
+  - [Setting Up](#setting-up)
+  - [Features](#features)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
 
